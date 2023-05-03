@@ -80,8 +80,77 @@ from host: `curl localhost`
 ### 10. Show traffic of one protocol command
 `tcpdump <protocol>`
 
-from container: `tcpdump icmp`
+from container: 
+        
+    tcpdump icmp
 
-from host: `ping 172.17.0.2`
+from host: 
+
+    ping 172.17.0.2
 
 ![ICMP packets](/Assets/Images/solution_10.png "ICMP packets")
+
+### 11. Write the command showing only IP6 traffic
+
+    tcpdump ip6
+### 12. Write the command for finding traffic using port range.
+`tcpdump portrange <port range>`
+
+From Container
+
+    tcpdump portrange 70-330
+From Host
+
+    curl localhost:80
+![filter by port range](/Assets/Images/solution_12.png "filter by port range")
+
+### 13. What are PCAP (PEE-cap) files?
+PCAP or PEE-cap files are files that contains captured packets. These files can be used by many network analysis tools.
+
+### 14. How are PCAP files processed and why is it so?
+The PCAP files are processed by many softwares. They are stored captured packets in binary format.
+
+### 15. Which switch is used to write the PCAP file called capture_file?
+the `-w` switch
+
+`tcpdump -w <filename>`
+
+### 16. What is the command for reading/writing capture to a file?
+
+Writing: `tcpdump -w <filename>`
+
+Reading: `tcpdump -r <filename>`
+
+From Container
+    
+    tcpdump -w capture_file
+
+From Host
+    
+    curl localhost
+
+![write to file](/Assets/Images/solution_16.png "write to file")
+
+### 17. Which switch is needed to read the PCAP files?
+The `-r` switch
+### 18. What is the tcpdump command while reading in a file?
+
+Writing: `tcpdump -r <filename>`
+
+From Container
+
+    tcpdump -r capture_file
+
+From Host
+
+    curl localhost
+
+![read from file](/Assets/Images/solution_18.png "read from file")
+
+### 19. Which switch is used for the ethernet header?
+
+The `-XX` flag
+
+### 20. What is line-readable output? How is it notified?
+
+The line readable output is used to view as the packets are being saved or to send output to other command through piping
