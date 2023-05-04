@@ -154,3 +154,93 @@ The `-XX` flag
 ### 20. What is line-readable output? How is it notified?
 
 The line readable output is used to view as the packets are being saved or to send output to other command through piping
+
+### 21. What does `-q` imply?
+It it used to make the output less informative.
+
+From Container: 
+
+    tcpdump -q -i eth0
+
+From Host: 
+
+    curl localhost
+
+![less output](/Assets/Images/solution_21.png "less output")
+
+### 22. What does the tweak `-t` work?
+
+Gives human readable timestamps.
+
+### 23. What does `-tttt` show?
+
+It gives the maximum human readable timestamp output
+
+From Container: 
+
+    tcpdump -q -tttt -i eth0
+
+From Host: 
+
+    curl localhost
+
+![show full timestamp](/Assets/Images/solution_23.png "show full timestamp")
+
+
+### 24. To listen on the eth0 interface which one is used?
+
+The `-i eth0` flag
+
+### 25. Purpose for `-vv`?
+
+It is used for maximum verbose output.
+
+### 26. Purpose for `-c`?
+By providing a number after it, we can limit the captured packets.
+
+From Container: 
+
+    tcpdump -q -tttt -i eth0 -c 1
+
+From Host: 
+
+    curl localhost
+
+![show full timestamp](/Assets/Images/solution_26.png "show full timestamp")
+
+### 27. Why `-s` is used?
+It is used to define the snaplength.
+The `-s0` is used to get everything
+### 28. What does -S, -e, -E imply?
+The `-S` is used to print absolute sequence number.
+
+The `-e` is used to print the ethernet header.
+
+The `-E` is used to decrypt IPSEC traffic by providing encryption key.
+
+### 29. How to show the raw output view?
+
+    tcpdump -ttnnvvS
+
+From Container: 
+
+    tcpdump -ttnnvvS -i eth0
+
+From Host: 
+
+    curl localhost
+
+![show raw output](/Assets/Images/solution_29.png "show full timestamp")
+
+### 30. If a specific IP and destined course are given then which tweak is used?
+The `and` or `&&` should be used
+
+From Container:
+
+    tcpdump src 172.17.0.1 and dst 172.17.0.2
+
+From Host:
+
+    curl localhost
+
+![combine command with and](/Assets//Images/solution_30.png "combine command with and")
