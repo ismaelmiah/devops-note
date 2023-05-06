@@ -292,3 +292,59 @@ single quotes are used for ignoring special characters. Like the `'('` and `')'`
     tcpdump 'tcp[tcpflags] == tcp-ack'
 ### 40. How to isolate TCP PSH flags?
     tcpdump 'tcp[13] & 8!=0'
+    tcpdump 'tcp[tcpflags] == tcp-push'
+### 41. How to isolate TCP FIN flags?
+
+tcpdump 'tcp[13] & 1!=0'
+tcpdump 'tcp[tcpflags] == tcp-fin'
+
+### 42. How is GREP used with TCPDUMP?
+By using the `-l` and piping output to grep.
+
+### 43. Command for both SYN and RST flags?
+    tcpdump 'tcp[13] = 6'
+
+### 44. What to do for cleartext GET requests?
+    tcpdump -vvAls0 | grep 'GET'
+From Container
+    
+    tcpdump -vvAls0 | grep 'GET'
+
+From Host
+
+    curl localhost
+
+![see get request](/Assets/Images/solution_44.png "see get request")
+
+### 45. What to do to find HTTP host headers?
+    tcpdump -vvAls0 | grep 'Host:'
+
+From Container
+
+    tcpdump -vvAls0 | grep 'Host:'
+
+From Host
+    
+    curl localhost
+
+![host headers](/Assets/Images/solution_45.png "host headers")
+
+### 46. How to find HTTP cookies?
+
+    tcpdump -vvAls0 | grep 'Set-Cookie|Host:|Cookie:'
+
+### 47. The command line for find SSH connections?
+    tcpdump 'tcp[(tcp[12]>>2):4] = 0x5353482D'
+    tcpdump port 22
+
+### 48. How to find DNS traffic?
+
+    tcpdump -vvAs0 port 53
+
+### 49. Command for finding FTP traffic?
+
+    tcpdump -vvAs0 port 21
+
+### 50. Find NTP traffic, what is the command?
+
+    tcpdump -vvAs0 port 123
